@@ -1,10 +1,10 @@
 (ns back.core
-  (:require [org.httpkit.server :refer :all]
+  (:require
         [compojure.core :refer :all]
         [compojure.route :as route]
         [ring.util.response :as response]
         )
-  )
+  (:gen-class))
 
 (use 'org.httpkit.timer)
 
@@ -31,7 +31,7 @@
   (with-channel request channel
                 (on-close channel (fn [status] (println "channel closed: " status)))
                 (on-receive channel (fn [data] ;; echo it back
-                                      (println "data: " data)
+                            app          (println "data: " data)
                                       (send! channel data)))))
 
 (defroutes all-routes
@@ -40,5 +40,7 @@
            (GET "/index" [] (fn [req] (println "index" req) (response/resource-response "index.html")))
            (route/not-found "<h1>Page not found</h1>"))
 
-(defn -main [& args]
-   (run-server all-routes {:port 8080}))
+(defn -main
+  [& [port]]
+  (println "in main............")
+  (run-server all-routes {:port (or (Integer. port) 8080)}))
