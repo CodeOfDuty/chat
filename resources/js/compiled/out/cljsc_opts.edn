@@ -1,1 +1,0 @@
-{:main chat.core, :asset-path "js/compiled/out", :output-to "resources/js/compiled/chat.js", :output-dir "resources/js/compiled/out", :source-map-timestamp true, :optimizations :none, :preloads [figwheel.connect], :external-config #:figwheel{:config {:build-id "dev", :websocket-url "ws://localhost:3449/figwheel-ws"}}}

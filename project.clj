@@ -15,13 +15,13 @@
             [lein-ancient "0.7.0"]
             [lein-cljsbuild "1.1.8" :exclusions [[org.clojure/clojure]]]]
   :source-paths ["src/front_back"]
-  :main back.core
+  ;:main back.core
   :resource-paths ["resources"]
   :uberjar-name "chat-simple.jar"
   :figwheel {:server-port 3449 ;; default
              :server-ip "127.0.0.1"
              :server-logfile false
-             :css-dirs ["resources/css"] ;; watch and update CSS
+             :css-dirs ["resources/public/css"] ;; watch and update CSS
 
              ;; Start an nREPL server into the running figwheel process
              :nrepl-port 7888
@@ -32,7 +32,7 @@
 
              ;; doesn't work for you just run your own server :) (see lein-ring)
 
-             ;:ring-handler back.core/app
+             :ring-handler back.core/all-routes
 
              ;; To be able to open files in your editor from the heads up display
              ;; you will need to put a script on your path.
@@ -66,11 +66,11 @@
                                               :figwheel true
                                               :compiler {:main chat.core
                                                          :asset-path "js/compiled/out"
-                                                         :output-to "resources/js/compiled/chat.js"
-                                                         :output-dir "resources/js/compiled/out"
+                                                         :output-to "resources/public/js/compiled/chat.js"
+                                                         :output-dir "resources/public/js/compiled/out"
                                                          :source-map-timestamp true}}}}
 
                    :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
                    ;; need to add the compliled assets to the :clean-targets
-                   :clean-targets ^{:protect false} ["resources/js/compiled"
+                   :clean-targets ^{:protect false} ["resources/public/js/compiled"
                                                      :target-path]}})

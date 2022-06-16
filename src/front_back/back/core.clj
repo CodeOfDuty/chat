@@ -21,6 +21,8 @@
 
 (defonce server (atom nil))
 
+(println "a random print :--------) ")
+
 (defn stop-server []
   (when-not (nil? @server)
     ;; graceful shutdown: wait 100ms for existing requests to be finished
@@ -29,17 +31,18 @@
     (reset! server nil)))
 
 (defn ws-handler [request]
+  (println "in ws handler")
   (with-channel request channel
                 (on-close channel (fn [status] (println "channel closed: " status)))
                 (on-receive channel (fn [data] ;; echo it back
-                            app          (println "data: " data)
+                                      (println "data: " data)
                                       (send! channel data)))))
 
 (defroutes all-routes
            (GET "/hello" [] "<h1>Hello World</h1>")
            (GET "/ws" [] ws-handler)
-           (GET "/index" [] (fn [req] (println "index" req) (response/resource-response "index.html")))
-           (route/not-found "<h1>Page not found</h1>"))
+           (GET "/index" [] (fn [req] (println "index" req) (response/resource-response "index.html" {:root "public"})))
+           (route/not-found (fn [req] (println "not found" req) "<h1>Page not found</h1>")))
 
 (defn -main
   [& [port]]
