@@ -6,6 +6,8 @@
 
 (goog-define ws-url "ws://localhost:3449/ws")
 
+(defonce received (atom []))
+
 (enable-console-print!)
 
 (println "hola" ws-url)
@@ -18,7 +20,9 @@
 (defn receive-message [channel]
   (async/go
     (if-let [server-msg (:message (async/<! channel))]
-      (do (println server-msg))
+      (do (println "Server says:" server-msg)
+          (swap! received conj server-msg)
+          (println "Received: " received))
       (println "Socket closed"))))
 
 (defn connect []
@@ -40,6 +44,7 @@
 (defn app-container []
   [:h2 "Second title"]
   [:p "a paragraph"]
+  [:p (str "Server message : " @received)]
   )
 
 (rdom/render [app-container]
