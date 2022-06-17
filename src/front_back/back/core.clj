@@ -36,7 +36,8 @@
                 (on-close channel (fn [status] (println "channel closed: " status)))
                 (on-receive channel (fn [data] ;; echo it back
                                       (println "data: " data)
-                                      (send! channel data)))))
+                                      (println "message: " (str "Response from server: " data))
+                                      (send! channel "hola-from-server")))))
 
 (defroutes all-routes
            (GET "/hello" [] "<h1>Hello World</h1>")

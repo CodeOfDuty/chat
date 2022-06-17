@@ -21,11 +21,11 @@ return figwheel.client.socket.goog$module$goog$object.get.call(null,window,"WebS
 } else {
 if(figwheel.client.utils.node_env_QMARK_.call(null)){
 try{return require("ws");
-}catch (e32942){if((e32942 instanceof Error)){
-var e = e32942;
+}catch (e33948){if((e33948 instanceof Error)){
+var e = e33948;
 return null;
 } else {
-throw e32942;
+throw e33948;
 
 }
 }} else {
@@ -83,14 +83,14 @@ return and__5043__auto____$1;
 return and__5043__auto__;
 }
 });
-figwheel.client.socket.open = (function figwheel$client$socket$open(p__32943){
-var map__32944 = p__32943;
-var map__32944__$1 = cljs.core.__destructure_map.call(null,map__32944);
-var opts = map__32944__$1;
-var retry_count = cljs.core.get.call(null,map__32944__$1,new cljs.core.Keyword(null,"retry-count","retry-count",1936122875));
-var retried_count = cljs.core.get.call(null,map__32944__$1,new cljs.core.Keyword(null,"retried-count","retried-count",-2127867357));
-var websocket_url = cljs.core.get.call(null,map__32944__$1,new cljs.core.Keyword(null,"websocket-url","websocket-url",-490444938));
-var build_id = cljs.core.get.call(null,map__32944__$1,new cljs.core.Keyword(null,"build-id","build-id",1642831089));
+figwheel.client.socket.open = (function figwheel$client$socket$open(p__33949){
+var map__33950 = p__33949;
+var map__33950__$1 = cljs.core.__destructure_map.call(null,map__33950);
+var opts = map__33950__$1;
+var retry_count = cljs.core.get.call(null,map__33950__$1,new cljs.core.Keyword(null,"retry-count","retry-count",1936122875));
+var retried_count = cljs.core.get.call(null,map__33950__$1,new cljs.core.Keyword(null,"retried-count","retried-count",-2127867357));
+var websocket_url = cljs.core.get.call(null,map__33950__$1,new cljs.core.Keyword(null,"websocket-url","websocket-url",-490444938));
+var build_id = cljs.core.get.call(null,map__33950__$1,new cljs.core.Keyword(null,"build-id","build-id",1642831089));
 var temp__5733__auto__ = figwheel.client.socket.get_websocket_imp.call(null);
 if(cljs.core.truth_(temp__5733__auto__)){
 var WebSocket = temp__5733__auto__;
@@ -151,4 +151,4 @@ return figwheel.client.utils.log.call(null,new cljs.core.Keyword(null,"debug","d
 }
 });
 
-//# sourceMappingURL=socket.js.map?rel=1655292230850
+//# sourceMappingURL=socket.js.map?rel=1655379921733
